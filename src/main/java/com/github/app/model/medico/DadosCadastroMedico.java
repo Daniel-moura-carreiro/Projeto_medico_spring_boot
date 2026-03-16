@@ -11,8 +11,8 @@ public record DadosCadastroMedico(
     String nome, 
     String email, 
     String crm, 
-    Especialidade especialidade,  //uma classe só para especialidades, onde deixo pré definido quais são as especialidades aceitas pelo sistema
-    DadosCadastroEndereco endereco  //uma classe para endereço, pois são informações que irão se repetir também para pacientes
+    Especialidade especialidade  //uma classe só para especialidades, onde deixo pré definido quais são as especialidades aceitas pelo sistema
+    //DadosCadastroEndereco endereco  //uma classe para endereço, pois são informações que irão se repetir também para pacientes
     ) {
     
 }
