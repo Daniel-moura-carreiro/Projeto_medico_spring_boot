@@ -41,7 +41,7 @@ public class Medico {
     
     //Constructor com o recebimento dos dados convertendo para objeto
     public Medico(DadosCadastroMedico dados) {
-        this.nome = dados.nome();
+        this.nome = dados.nome(); //() => para diferenciar de um construtor que está tendo uma conversão de uma que não está tendo
         this.email = dados.email();
         this.crm = dados.crm();
         this.especialidade = dados.especialidade();        

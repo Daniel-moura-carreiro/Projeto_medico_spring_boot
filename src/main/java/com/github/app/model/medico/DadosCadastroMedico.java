@@ -1,6 +1,6 @@
 package com.github.app.model.medico;
 
-import com.github.app.model.endereco.DadosCadastroEndereco;
+//import com.github.app.model.endereco.DadosCadastroEndereco;
 
 //Essa classe é responsável por pegar os dados que estão vindo do simulador de requisição (insomnia) e transformar em atributos (variáveis) de uma entidade chamada Médico.
 
