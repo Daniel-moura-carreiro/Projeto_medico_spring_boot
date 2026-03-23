@@ -1,5 +1,7 @@
 package com.github.app.model.paciente;
 
+import com.github.app.model.endereco.Endereco;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,6 +22,9 @@ public class Paciente {
     private String cpf;
     private String email;
     private String telefone;
+
+    @Embedded
+    private Endereco endereco;
 
     //Constructor
     public Paciente(DadosCadastroPaciente dados) {

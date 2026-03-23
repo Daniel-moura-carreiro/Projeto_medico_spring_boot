@@ -1,5 +1,7 @@
 package com.github.app.model.medico;
 
+import com.github.app.model.endereco.Endereco;
+
 import jakarta.persistence.*; //já importam tudo que está abaixo
 import lombok.*;
 
@@ -38,6 +40,9 @@ public class Medico {
     
     @Enumerated(EnumType.STRING) //SPRING JPA - informa para o BD que o atributo é do tipo enum
     private Especialidade especialidade;
+
+    @Embedded //Utilizada na classe pai. Associa uma entidade a uma tabela auxiliar. Usar no atributo da entidade principal que referencia a classe @Embeddable(Nesse caso, a class Endereco)
+    private Endereco endereco;
     
     //Constructor com o recebimento dos dados convertendo para objeto
     public Medico(DadosCadastroMedico dados) {
