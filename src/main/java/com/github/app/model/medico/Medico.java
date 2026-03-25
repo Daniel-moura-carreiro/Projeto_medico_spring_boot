@@ -49,7 +49,8 @@ public class Medico {
         this.nome = dados.nome(); //() => para diferenciar de um construtor que está tendo uma conversão de uma que não está tendo
         this.email = dados.email();
         this.crm = dados.crm();
-        this.especialidade = dados.especialidade();        
+        this.especialidade = dados.especialidade();      
+        this.endereco = new Endereco(dados.endereco());
     }
 
 }
