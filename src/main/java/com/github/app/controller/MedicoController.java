@@ -3,10 +3,13 @@ package com.github.app.controller;
 import com.github.app.AppApplication;
 import java.util.List;
 
+import org.aspectj.weaver.ast.Var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;  //já importa todos os que estão comentados abaixo
+
+import com.github.app.model.medico.DadosAtualizacaoMedico;
 
 // import org.springframework.web.bind.annotation.PostMapping;
 // import org.springframework.web.bind.annotation.RequestBody;
@@ -17,8 +20,16 @@ import com.github.app.model.medico.DadosCadastroMedico;
 import com.github.app.model.medico.DadosListagemMedico;
 import com.github.app.model.medico.Medico;
 import com.github.app.model.medico.MedicoRepository;
+
+import jakarta.transaction.Transactional;
+import lombok.experimental.var;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 @RestController //SPRING WEB - Informa para o Springboot que abaixo é uma classe controladora de requisições (GET-POST-PUT-DELETE)
@@ -34,6 +45,7 @@ public class MedicoController {
     }
     
     @PostMapping //SPRING WEB - Informa que o método abaixo é do tipo POST (cadastrar)
+    @Transactional // SPRING DATA JPA infor ao spring abaixo é do tipo POST (cadastrar)
     public void cadastrar(@RequestBody DadosCadastroMedico dados) {
         repository.save(new Medico(dados));
     }
@@ -56,6 +68,31 @@ public class MedicoController {
         return repository.findAll(paginacao).map(DadosListagemMedico::new);
 
     }
+
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody DadosAtualizacaoMedico dados){
+        var medico = repository.getReferenceById(dados.id());
+        // var é uma palavra reservada em java para declarar uma variável sem especificar seu tipo: o tipo da varável é inferida pelo compilador com base no valor que foi atribuída a ela
+        medico.atualizarInformacoes(dados);
+    }
+
+
+    //EXCLUSÃO - AQUI ESTOU EXCLUINDO MESMO.
+    @DeleteMapping("/{id}")
+    @Transactional // SPRING DATA JPA - informa ao spring boot que o método irá excluir algo no BD.
+    public void excluir(@PathVariable Integer id){ //@PathVariable - informa que o springBoot precisa pegar o caminho variável {id} e entender que é o campo id do médico
+        repository.getReferenceById(id);
+    }
+    
+    
+    //EXCLUSÃO LÓGICA - Uma regra de negócio que permite que um registro seja "EXCLUÍDO" sem serapagado do Banco de Dados.
+    @DeleteMapping("/{id}")
+    @Transactional
+        public void alterarStatus(@PathVariable Integer id){
+
+
+        }
 
 
     

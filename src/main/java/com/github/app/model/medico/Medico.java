@@ -35,9 +35,10 @@ public class Medico {
 
     private String nome;
     private String email;
+    private String telefone;
     private String crm;
+    private Boolean ativo = true;
 
-    
     @Enumerated(EnumType.STRING) //SPRING JPA - informa para o BD que o atributo é do tipo enum
     private Especialidade especialidade;
 
@@ -48,9 +49,16 @@ public class Medico {
     public Medico(DadosCadastroMedico dados) {
         this.nome = dados.nome(); //() => para diferenciar de um construtor que está tendo uma conversão de uma que não está tendo
         this.email = dados.email();
+        this.telefone = dados.telefone();
         this.crm = dados.crm();
         this.especialidade = dados.especialidade();      
         this.endereco = new Endereco(dados.endereco());
+    }
+
+
+    //Método resposável por alterar o status de true para false
+    public void exclusaoLogica(){
+        this.ativo = false;
     }
 
 }

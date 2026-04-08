@@ -20,11 +20,34 @@ public class Endereco {
 
     //Constructor recebendo os dados convertidos DTO (Data Transfer Object). No Spring Boot é um padrão de projeto usado para transferir dados entre camadas (controller/serviço) e entre o backend e frontend
     public Endereco (DadosCadastroEndereco dados) {
-        this.logradouro = dados.logradouro();
+        this.bairro = dados.logradouro();
         this.bairro = dados.bairro();
         this.cep = dados.cep();
         this.complemento = dados.complemento();
         this.cidade = dados.cidade();
         this.uf = dados.uf();
+    }
+
+    //Metodo para atualizar as informações do endereco, recebendo um objeto do tipo DadosCadastroEndereco e atualizando os atributos de endereco com os dados recebidos
+
+    public void atualizarInformacoes(DadosCadastroEndereco dados){
+        if(dados.logradouro() != null){
+            this.bairro = dados.logradouro();
+        }
+        if(dados.bairro() != null){
+            this.bairro = dados.bairro();
+        }
+        if(dados.cep() != null){
+            this.bairro = dados.cep();
+        }
+        if(dados.complemento() != null){
+            this.bairro = dados.complemento();
+        }
+        if(dados.cidade() != null){
+            this.bairro = dados.cidade();
+        }
+        if(dados.uf() != null){
+            this.bairro = dados.uf();
+        }
     }
 }

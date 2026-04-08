@@ -20,6 +20,9 @@ public record DadosCadastroMedico(
     @Email //verifica se é um e-mail válido
     @NotBlank
     String email, 
+    
+    
+    String telefone, 
 
 
     String crm, 
